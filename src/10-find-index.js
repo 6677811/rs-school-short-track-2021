@@ -11,8 +11,27 @@
  * For ([1, 2, 3], 2) should return 1
  *
  */
-function findIndex(/* array, value */) {
-  throw new Error('Not implemented');
+
+function search(array, l, r, x) {
+  while (l <= r) {
+    const medium = Math.floor((l + r) / 2);
+    if (x === array[medium]) {
+      return medium;
+    }
+    // If x is smaller, ignore right half
+    if (x < array[medium]) {
+      // eslint-disable-next-line no-param-reassign
+      r = (medium - 1);
+    } else {
+      // eslint-disable-next-line no-param-reassign
+      l = (medium + 1);
+    }
+  }
+  return -1;
+}
+
+function findIndex(arr, val) {
+  return search(arr, 0, arr.length - 1, val);
 }
 
 module.exports = findIndex;
